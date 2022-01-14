@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="StyleMeteo.css">
+    <link rel="stylesheet" href="styleCalcul.css">
+    <link rel="stylesheet" href="styleConvert.css">
+    <link rel="stylesheet" href="styleJP.css">
+    <link rel="stylesheet" href="stylePlouf.css">
+    <script src="https://kit.fontawesome.com/b636e708af.js" crossorigin="anonymous"></script>
+
+
+    <title>WGs</title>
+</head>
+<body class="light">
+
+<header id="header">
+        
+
+    <nav class="menu grid">
+        <a href="https://assets.afcdn.com/recipe/20210304/118354_w1024h576c1cx1060cy707.webp" target="_blank" id="logo">
+            W<span>G</span>s
+
+        </a>
+        <ul class="nav">
+            <li>
+                <a href="#wrapper">Météo</a>
+            </li>
+            <li>
+                <a href="#wrapper1">Calculatrice</a>
+            </li>
+            <li>
+                <a href="#wrapper2">Convertisseur</a>
+            </li>
+            <li>
+                <a href="#password-generator">Mot de passe</a>
+            </li>
+            <li>
+                <a href="#wrapper3">Juste Prix</a>
+            </li>
+            <li>
+                <a href="#wrapper4">Plouf Plouf</a>
+            </li>
+            <li>
+                <button id="sombre" class="fas fa-moon" onclick=""></button>
+            </li>
+        </ul>
+
+    
+    </nav>
+</header>
+
+<div class="image1">
+    <h1>W<span>G</span>s</h1>
+    </div>
+<!-- Widget Mot de passe -->
+        <div id="password-generator">
+
+            <input value="Générateur de mot de passe" id="password-output">
+            <div class="range">
+                <input 
+                type="range"
+                min="4"
+                max="24"
+                step="1"
+                value="8"
+                id="password-length"
+                oninput="document.getElementById('display-password-length').value=this.value"
+                >
+                <input 
+                type="text"
+                value="8"
+                maxlength="2"
+                id="display-password-length"
+                oninput="document.getElementById('password-length').value=this.value"
+                >
+            </div>
+            <div class="flex">
+                <input type="checkbox" id="lowercase" checked="checked">
+                <label for="lowercase">a-z</label>
+
+                <input type="checkbox" id="uppercase">
+                <label for="uppercase">A-Z</label>
+
+                <input type="checkbox" id="numbers">
+                <label for="numbers">1-9</label>
+
+                <input type="checkbox" id="symbols">
+                <label for="symbols">!-?</label>
+            </div>
+
+            <button id="generateButton" type="button" onclick="generatePassword()">Générer un mot de passe</button>
+        </div>
+        <hr>
+
+<!-- Widget météo -->
+<div id="wrapper" class='wrapper'>
+ 
+    <search>
+      <form>
+        <input class='searchbar transparent' id='search' type='text' placeholder='Le nom de ta ville' />
+        <button class='button transparent' id='button' type="submit" value='rechercher' >Rechercher</button>
+      </form>
+    </search>
+   
+    <div class='panel'>
+      <h2 class='city' id='city'></h2>
+      <div class='weather' id='weather'>
+        <div class='group secondary'>
+          <h3 id='dt'></h3>
+          <h3 id='description'></h3>
+        </div>
+        <div class='group secondary'>
+          <h3 id='wind'></h3>
+          <h3 id='humidity'></h3>
+        </div>
+        <div class='temperature' id='temperature'>
+          <h1 class='temp' id='temp'><i id='condition'></i> <span id='num'></span><a class='fahrenheit' id='fahrenheit' href="#">&deg;F</a><span class='divider secondary'>|</span><a class='celsius active' id='celsius' href="#">&deg;C</a></h1>
+        </div>
+        <div class='forecast' id='forecast'></div>
+      </div>
+    </div>
+</div>
+<hr>
+
+<!-- Widget Calculatrice -->
+<div id="wrapper1" class="wrapper1">
+    <div class="result">
+        <div class="display">
+            <p id="output">0</p>
+
+        </div>
+    </div>
+        <div class="first-row">
+            <button id="r1-1" value=""  onclick="clearOutput()">C</button>
+            <button id="r2-2" value=""  onclick="perc()">%</button>
+            <button id="r1-3" value=""  onclick="fordisplay('/')">/</button>
+        </div>
+        <div class="second-row">
+            <button id="r2-1" value="7" onclick="fordisplay('7')" >7</button>
+            <button id="r2-2" value="8" onclick="fordisplay('8')" >8</button>
+            <button id="r2-3" value="9" onclick="fordisplay('9')" >9</button>
+            <button id="r2-4" value="*" onclick="fordisplay('*')" >X</button>
+         </div>
+         <div class="third-row">
+            <button id="r3-1" value="4" onclick="fordisplay('4')" >4</button>
+            <button id="r3-2" value="5" onclick="fordisplay('5')" >5</button>
+            <button id="r3-3" value="6" onclick="fordisplay('6')" >6</button>
+            <button id="r3-4" value="-" onclick="fordisplay('-')" >-</button>
+         </div>
+         <div class="fourth-row">
+            <button id="r4-1" value="1" onclick="fordisplay('1')"  >1</button>
+            <button id="r4-2" value="2" onclick="fordisplay('2')"  >2</button>
+            <button id="r4-3" value="3" onclick="fordisplay('3')"  >3</button>
+            <button id="r4-4" value="+" onclick="fordisplay('+')"  >+</button>
+         </div>
+         <div class="fifth-row">
+            <button id="r5-1"onclick="fordisplay('0')" >0</button>
+            <button id="r5-2"onclick="fordisplay('.')" >.</button>
+            <button id="r5-3"onclick="solve()('=')" >=</button>
+          </div>
+
+    </div>
+</div>
+<hr>
+
+<!-- Widget convertisseur -->
+
+    <div id="wrapper2" class="wrapper2">
+        <h1>Convertisseur de distances</h1>
+        <div class="convert">
+            <div class="convert-input">
+                <input type="number" name="first-value" id="first-value" min="0" step="0.1" />
+                <select name="first-unit" id="first-unit">
+                    <option value="km">Kilomètre</option>
+                    <option value="m" selected>Mètre</option>
+                    <option value="cm">Centimètre</option>
+                    <option value="mm">Millimètre</option>
+                </select>
+            </div>
+            <ion-icon name="caret-down"></ion-icon>
+            <div class="convert-input">
+                <input type="number" name="second-value" id="second-value" disabled />
+                <select name="second-unit" id="second-unit">
+                    <option value="km">Kilomètre</option>
+                    <option value="m">Mètre</option>
+                    <option value="cm" selected>Centimètre</option>
+                    <option value="mm">Millimètre</option>
+                </select>
+            </div>
+        </div>
+        <button id="convert-btn">Convertir</button>
+    </div>
+    <script src="./app.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<hr>
+<!-- Widget Juste Prix -->
+
+<div id="wrapper3" class="container">
+	<div class="jumbotron text-center">
+		<h3>Le prix de la vitrine est entre 0 et <span class="prixMax">100</span>.</h3>
+		<h1 class="chrono">30</h1>
+		<h2 class="secondes">Secondes</h2>
+		<h2 class="reponse">Trouvez le Juste Prix !</h2>
+		<form id="paris" class="form-inline" role="form">
+		<input type="text" class="form-control" id="nombre" placeholder="Entrez un nombre" autocomplete="off">
+		<button type="submit" class="btn btn-default">Parier !</button>
+		</form>
+		<button id="commencer" class="btn btn-large btn-danger">Commencer !</button>
+	</div>
+</div>
+<hr>
+
+<!-- Widget Plouf Plouf -->
+
+<div id="wrapper4" class="overlay">
+    <canvas id="world"></canvas>
+    <h1 id="winner"></h1>
+    <svg id="close" aria-hidden="true" data-prefix="far" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="svg-inline--fa fa-times fa-w-10 fa-3x"><path fill="white" d="M207.6 256l107.72-107.72c6.23-6.23 6.23-16.34 0-22.58l-25.03-25.03c-6.23-6.23-16.34-6.23-22.58 0L160 208.4 52.28 100.68c-6.23-6.23-16.34-6.23-22.58 0L4.68 125.7c-6.23 6.23-6.23 16.34 0 22.58L112.4 256 4.68 363.72c-6.23 6.23-6.23 16.34 0 22.58l25.03 25.03c6.23 6.23 16.34 6.23 22.58 0L160 303.6l107.72 107.72c6.23 6.23 16.34 6.23 22.58 0l25.03-25.03c6.23-6.23 6.23-16.34 0-22.58L207.6 256z" class=""></path></svg>
+</div>
+  
+  <div class="background">
+        <div class="namepicker">
+            <p>Noms:</p>
+                <input id="names" type="text" placeholder="Chaque nom doit être suivi d'une ‘ , ‘">
+                    <a href="#" id="pick">Plouf Plouf</a>
+        </div>
+    </div>
+    
+
+
+
+
+
+<footer>
+    <p>Dereje Getu Tadesse 2022 </p>
+            <a id="hub" href="https://github.com/Dereje-getu-tadesse-10" target="_blank" class="fab fa-github"></a>
+
+</footer>
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="main.js" ></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+@font-face {
+    font-family: 'poppins_regular';
+    src: url(font/Poppins-Regular.ttf);
+}
+
+body{
+    background-color: white;
+    color: black;
+}
+.wrapper2 h1{
+    color: #ffa500;
+    font-family: 'poppins_regular';
+}
+.wrapper2{
+    padding: 1rem;
+    margin: 10rem auto;
+    width: 50%;
+    border-radius: 10px;
+    box-shadow: 0 0 4px #1f1f1f;
+    border: 3px solid #d5d4ff;
+    white-space: nowrap;
+}
+.wrapper2 button{
+    color: white;
+    outline: none;
+    background: #ffa500;
+    border: none;
+    padding: 1rem 2rem;
+    margin: 0.5rem 0;
+    border-radius: 3px;
+    box-shadow: 1px 1px 3px #313030;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+.wrapper2 input, select {
+    padding: 0.8rem 1rem;
+    background-color: white;
+    border: 1px solid darkgray;
+    border-radius: 5px;
+}
+ion-icon {
+    font-size: 6rem;
+    color: #ffa500;
+}
+.dark {
+    background-color: #1a202c!important;
+    color: white;
+}
